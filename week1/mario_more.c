@@ -25,7 +25,7 @@ int main(void)
     // TODO: Same do-while input validation as mario.c (height 1–8)
     do
     {
-        height = get_int("Height: ")
+        height = get_int("Height: ");
     }
     while (height < 1 || height > 8);
 
