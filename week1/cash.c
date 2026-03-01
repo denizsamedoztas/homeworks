@@ -55,11 +55,43 @@ int main(void)
 // Prompt the user for a non-negative number of cents
 int get_cents(void)
 {
-    // TODO: Use a do-while loop with get_int("Change owed: ")
-    //       Re-prompt if the value is negative.
+    // Kullanıcıdan negatif olmayan bir sayı al
+int get_cents(void)
+{
+    int cents;
+    do
+    {
+        // Kullanıcıdan sayıyı iste
+        cents = get_int("Change owed: ");
+    }
+    while (cents < 0); // Sayı 0'dan küçük olduğu sürece döngüye devam et (tekrar sor)
 
+    return cents; // Geçerli sayıyı geri döndür
+}
 
-    // TODO: return the valid value
+// `cents` içine kaç tane çeyreklik (25'lik) sığar
+int calculate_quarters(int cents)
+{
+    return cents / 25;
+}
+
+// `cents` içine kaç tane onluk (10'luk) sığar
+int calculate_dimes(int cents)
+{
+    return cents / 10;
+}
+
+// `cents` içine kaç tane beşlik (5'lik) sığar
+int calculate_nickels(int cents)
+{
+    return cents / 5;
+}
+
+// `cents` içine kaç tane birlik (1'lik) sığar
+int calculate_pennies(int cents)
+{
+    return cents / 1; // Ya da direkt "return cents;" yazabilirsin, 1'e bölmek sayıyı değiştirmez.
+}
 
 }
 
