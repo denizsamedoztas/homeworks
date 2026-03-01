@@ -16,11 +16,9 @@
 #include <string.h>
 
 // Point values for each letter A-Z (index 0 = A, index 25 = Z)
-// Do NOT modify this array.
 int POINTS[] = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
-//              A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P   Q  R  S  T  U  V  W  X  Y   Z
 
-// Function prototype — do NOT change this signature
+// Function prototype
 int compute_score(string word);
 
 int main(void)
@@ -33,38 +31,44 @@ int main(void)
     int score1 = compute_score(word1);
     int score2 = compute_score(word2);
 
-    // TODO: Print the winner (or "Tie!" if scores are equal)
-    //
-    //   If score1 > score2 → printf("Player 1 wins!\n");
-    //   If score2 > score1 → printf("Player 2 wins!\n");
-    //   If equal           → printf("Tie!\n");
+    // Print the winner or "Tie!"
+    if (score1 > score2)
+    {
+        printf("Player 1 wins!\n");
+    }
+    else if (score2 > score1)
+    {
+        printf("Player 2 wins!\n");
+    }
+    else
+    {
+        printf("Tie!\n");
+    }
 
+    return 0;
 }
 
 // ---------------------------------------------------------------------------
-// TODO: Implement compute_score
-// ---------------------------------------------------------------------------
 // Given a word, return its Scrabble score.
-//
-// Rules:
-//   - Use the POINTS array to look up each letter's value
-//   - Uppercase and lowercase letters have the SAME point value
-//   - Non-letter characters (spaces, punctuation) score 0 points
-//
-// Hints:
-//   - Loop through each character: for (int i = 0; i < strlen(word); i++)
-//   - Check if a char is uppercase: isupper(word[i])
-//   - For uppercase 'A': POINTS['A' - 'A'] = POINTS[0] = 1
-//   - For lowercase 'a': POINTS['a' - 'a'] = POINTS[0] = 1
-//   - Use isalpha(word[i]) to skip non-letter characters
 // ---------------------------------------------------------------------------
 int compute_score(string word)
 {
     int score = 0;
 
-    // TODO: Loop through each character of word
-    // TODO: Add the correct point value to score
-    // TODO: Return the total score
+    // Loop through each character of the word
+    for (int i = 0, len = strlen(word); i < len; i++)
+    {
+        // Check if the character is a letter (ignore punctuation/spaces)
+        if (isalpha(word[i]))
+        {
+            // Convert to uppercase so 'A' and 'a' are treated the same
+            // Subtract 'A' to get the alphabet index (0 to 25)
+            int index = toupper(word[i]) - 'A';
+
+            // Add the corresponding points to the total score
+            score += POINTS[index];
+        }
+    }
 
     return score;
 }
