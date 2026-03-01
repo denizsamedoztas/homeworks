@@ -23,37 +23,25 @@ int main(void)
 {
     int height;
 
-    // TODO: Same do-while input validation as mario.c (height 1–8)
+    // TODO: Use a do-while loop to prompt for height.
+    //       Keep re-prompting until height is between 1 and 8 (inclusive).
     do
     {
-        height = get_int("Height: ");
-    }
-    while (height < 1 || height > 8);
+        // TODO: Get an integer from the user with prompt "Height: "
 
-    // TODO: Print each row of the double pyramid
+    }
+    while (/* TODO: condition to keep looping */ false);
+
+    // TODO: Use a for loop to iterate over each row (1 through height).
     for (int row = 1; row <= height; row++)
     {
-        for (int space = 0; space < height - row; space++)
-        {
-            printf(" ");
-        }
+        // TODO: Print (height - row) spaces using a for loop.
 
-        // Print hashes for the left side
-        for (int hash = 0; hash < row; hash++)
-        {
-            printf("#");
-        }
 
-        // Print the gap between the two pyramids
-        printf("  ");
+        // TODO: Print (row) hashes using a for loop.
 
-        // Print hashes for the right side
-        for (int hash = 0; hash < row; hash++)
-        {
-            printf("#");
-        }
 
-        // Move to the next line
+        // Print a newline to end the row.
         printf("\n");
     }
 
