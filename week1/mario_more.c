@@ -33,18 +33,27 @@ int main(void)
     // TODO: Print each row of the double pyramid
     for (int row = 1; row <= height; row++)
     {
-        // TODO: Print (height - row) leading spaces
+for (int space = 0; space < height - row; space++)
+        {
+            printf(" ");
+        }
 
+        // Print hashes for the left side
+        for (int hash = 0; hash < row; hash++)
+        {
+            printf("#");
+        }
 
-        // TODO: Print (row) hashes — LEFT side
-
-
-        // The gap between the two pyramids is always exactly two spaces.
+        // Print the gap between the two pyramids
         printf("  ");
 
-        // TODO: Print (row) hashes — RIGHT side (mirror of left, no leading spaces)
+        // Print hashes for the right side
+        for (int hash = 0; hash < row; hash++)
+        {
+            printf("#");
+        }
 
-
+        // Move to the next line
         printf("\n");
     }
 
