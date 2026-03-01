@@ -1,20 +1,3 @@
-// cash.c
-// CS50x - Week 1, Problem Set 1
-//
-// Exercise: Cash (Greedy Change)
-// --------------------------------
-// Calculate the minimum number of coins needed to make change.
-// Coins available: quarters (25¢), dimes (10¢), nickels (5¢), pennies (1¢)
-//
-// Expected output:
-//   Change owed: 41
-//   4
-//   (1 quarter + 1 dime + 1 nickel + 1 penny)
-//
-// How to compile:  make cash
-// How to run:      ./cash
-// How to check:    check50 cs50/problems/2024/x/cash
-
 #include <cs50.h>
 #include <stdio.h>
 
@@ -46,79 +29,39 @@ int main(void)
     printf("%i\n", quarters + dimes + nickels + pennies);
 }
 
-// ---------------------------------------------------------------------------
-// TODO: Implement the functions below.
-// Each function receives the remaining cents and returns how many
-// of that coin fit into it.
-// ---------------------------------------------------------------------------
-
 // Prompt the user for a non-negative number of cents
-int get_cents(void)
-{
-    // Kullanıcıdan negatif olmayan bir sayı al
 int get_cents(void)
 {
     int cents;
     do
     {
-        // Kullanıcıdan sayıyı iste
         cents = get_int("Change owed: ");
     }
-    while (cents < 0); // Sayı 0'dan küçük olduğu sürece döngüye devam et (tekrar sor)
+    while (cents < 0);
 
-    return cents; // Geçerli sayıyı geri döndür
-}
-
-// `cents` içine kaç tane çeyreklik (25'lik) sığar
-int calculate_quarters(int cents)
-{
-    return cents / 25;
-}
-
-// `cents` içine kaç tane onluk (10'luk) sığar
-int calculate_dimes(int cents)
-{
-    return cents / 10;
-}
-
-// `cents` içine kaç tane beşlik (5'lik) sığar
-int calculate_nickels(int cents)
-{
-    return cents / 5;
-}
-
-// `cents` içine kaç tane birlik (1'lik) sığar
-int calculate_pennies(int cents)
-{
-    return cents / 1; // Ya da direkt "return cents;" yazabilirsin, 1'e bölmek sayıyı değiştirmez.
-}
-
+    return cents;
 }
 
 // Return how many quarters fit in `cents`
 int calculate_quarters(int cents)
 {
-    // TODO: Return the number of quarters (integer division by 25)
-
+    return cents / 25;
 }
 
 // Return how many dimes fit in `cents`
 int calculate_dimes(int cents)
 {
-    // TODO
-
+    return cents / 10;
 }
 
 // Return how many nickels fit in `cents`
 int calculate_nickels(int cents)
 {
-    // TODO
-
+    return cents / 5;
 }
 
 // Return how many pennies fit in `cents`
 int calculate_pennies(int cents)
 {
-    // TODO
-
+    return cents;
 }
