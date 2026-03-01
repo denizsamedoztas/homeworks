@@ -27,7 +27,7 @@ int main(void)
     {
         height = get_int("Height: ");
     }
-    while (height < 1 || height > 80);
+    while (height < 1 || height > 8);
 
     // TODO: Print each row of the double pyramid
     for (int row = 1; row <= height; row++)
