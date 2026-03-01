@@ -3,74 +3,60 @@
 
 int main(void)
 {
-    // 1. Kullanıcıdan kredi kartı numarasını al
+    // Prompt for credit card number
     long card_number = get_long("Number: ");
 
-    // -----------------------------------------------------------------------
-    // ADIM 1 ve 4'e Hazırlık: Uzunluğu ve İlk İki Haneyi Bulma
-    // -----------------------------------------------------------------------
+    // Calculate length and extract the first two digits
     int length = 0;
     long temp = card_number;
     long first_two = card_number;
 
-    // Sayıyı sürekli 10'a bölerek kaç basamaklı olduğunu buluyoruz
     while (temp > 0)
     {
         temp = temp / 10;
         length++;
     }
 
-    // İlk iki haneyi bulmak için sayıyı 100'den küçük kalana kadar 10'a bölüyoruz
     while (first_two >= 100)
     {
         first_two = first_two / 10;
     }
 
-    // -----------------------------------------------------------------------
-    // ADIM 2: Luhn Algoritmasını Uygulama
-    // -----------------------------------------------------------------------
-    long cc = card_number; // Kart numarasının kopyası üzerinden çalışıyoruz
-    int sum_doubled = 0;   // 2 ile çarpılanların rakamları toplamı
-    int sum_rest = 0;      // Çarpılmayanların toplamı
-    int i = 0;             // Basamak pozisyonu (0: son basamak, 1: sondan bir önceki...)
+    // Apply Luhn's Algorithm
+    long cc = card_number;
+    int sum_doubled = 0;
+    int sum_rest = 0;
+    int i = 0;
 
     while (cc > 0)
     {
-        int digit = cc % 10; // Sayının en sağındaki (son) basamağı al
+        int digit = cc % 10;
 
-        // Eğer pozisyon TEK ise (sondan bir önceki, sondan üçüncü...)
+        // Multiply every other digit by 2, starting with the number's second-to-last digit
         if (i % 2 == 1)
         {
             int doubled = digit * 2;
-            // Çıkan sonucun rakamlarını topluyoruz (Örn: 14 ise 1 + 4 = 5 yapmalı)
-            // doubled % 10 (son basamağı verir) + doubled / 10 (ilk basamağı verir)
             sum_doubled += (doubled % 10) + (doubled / 10);
         }
-        // Eğer pozisyon ÇİFT ise (son basamak, sondan ikinci...)
         else
         {
             sum_rest += digit;
         }
 
-        cc = cc / 10; // En sağdaki basamağı silip bir yandakine geç
-        i++;          // Pozisyonu 1 artır
+        cc = cc / 10;
+        i++;
     }
 
-    // -----------------------------------------------------------------------
-    // ADIM 3: Geçerlilik Kontrolü
-    // -----------------------------------------------------------------------
+    // Check validity
     int total_sum = sum_doubled + sum_rest;
 
-    // Eğer toplamın son basamağı 0 değilse (10'a tam bölünmüyorsa) kart geçersizdir
     if (total_sum % 10 != 0)
     {
         printf("INVALID\n");
-        return 0; // Programı burada bitir
+        return 0;
     }
 
-    // -----------------------------------------------------------------------
-    // ADIM 4: Kart Tipini Belirleme
-    // -----------------------------------------------------------------------
+    // Determine card type based on length and starting digits
     if (length == 15 && (first_two == 34 || first_two == 37))
     {
         printf("AMEX\n");
@@ -79,7 +65,7 @@ int main(void)
     {
         printf("MASTERCARD\n");
     }
-    else if ((length == 13 || length == 16) && (first_two / 10 == 4)) // İlk hane 4 ise
+    else if ((length == 13 || length == 16) && (first_two / 10 == 4))
     {
         printf("VISA\n");
     }
